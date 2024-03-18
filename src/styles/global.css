@@ -1,0 +1,14 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+section{
+    background-color: lightpink;
+}
+nav{
+    background-color: orange;
+}
+.link{
+    color: blue;
+}
