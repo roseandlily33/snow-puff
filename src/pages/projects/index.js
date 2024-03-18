@@ -1,6 +1,7 @@
 import React from 'react';
 import Layout from '../../components/Layout';
 import { graphql, Link } from 'gatsby';
+import Img from 'gatsby-image';
 
 export default function ProjectsIndex({data}) {
   console.log('Projects', data)
@@ -11,7 +12,11 @@ export default function ProjectsIndex({data}) {
      <div>
       <h2>ProjectsIndex</h2>
       {projects.map(project => (
+         <div>
         <Link to={`/projects/${project.frontmatter.slug}`} key={project.id}>{project.frontmatter.title}</Link>
+        <Img fluid={project.frontmatter.thumb.childImageSharp}/>
+        <h3>{project.frontmatter.title}</h3>
+        </div>
       ))}
      </div>
 
@@ -27,8 +32,16 @@ query ProjectsPage {
         title
         slug
         date(locale: "")
+        thumb {
+          childImageSharp {
+            fluid {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
       }
       id
     }
   }
-}`;
+}
+`;

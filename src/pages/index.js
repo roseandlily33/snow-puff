@@ -2,9 +2,10 @@ import * as React from "react";
 import Layout from "../components/Layout";
 import * as styles from '../styles/home.module.css';
 import {Link, graphql} from 'gatsby';
+import Img from 'gatsby-image'
 //graphql
 
-export default function Home() {
+export default function Home({data}) {
   //{data} pass it in as props
   //console.log('Home data', data)
   //Data => site.siteMetadata.description 
@@ -18,7 +19,8 @@ export default function Home() {
       <h2>Bonjour</h2>
       <Link to="/"></Link>
     </section>
-    <img src="/undraw_cooking_p7m1.svg" alt="cooking" style={{height: '150px', width: '150px'}}/>
+    {/* <Img fluid={data.childImaegSharp.fluid.src}/> */}
+    {/* <img src="/undraw_cooking_p7m1.svg" alt="cooking" style={{height: '150px', width: '150px'}}/> */}
     </Layout>
   )
 }
@@ -36,12 +38,10 @@ export default function Home() {
 
 export const query = graphql`
   query myQuery{
-    file(relativePath: {eq: "coffeeImage.svg"}) {
+    file(relativePath: {eq: "swirl.jpg"}) {
     childImageSharp {
       fluid {
-        src
-        srcSet
-        sizes
+        ...GatsbyImageSharpFluid
       }
     }
   }
